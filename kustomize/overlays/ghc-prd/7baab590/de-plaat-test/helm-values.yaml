@@ -1,0 +1,64 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: my-application
+spec:
+  chart:
+    spec:
+      sourceRef:
+        name: de-plaat-test
+        namespace: ghc-nsp-7baab590-main-de-plaat-test
+      version: 6.16.1
+  install:
+    remediation:
+      retries: 3
+  releaseName: de-plaat-test
+  serviceAccountName: ghc-nsp-7baab590-main-de-plaat-test-flux
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    applicationName: de-plaat-test
+    deployment:
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+        runAsUser: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      image:
+        repository: ghcr.io/colibriblack/de-plaat
+        tag: latest
+      ports:
+        - containerPort: 8080
+          name: http
+      replicas: 1
+      resources:
+        limits:
+          memory: 512Mi
+        requests:
+          cpu: 100m
+          memory: 512Mi
+      securityContext:
+        fsGroup: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
+        seccompProfile:
+          type: RuntimeDefault
+    ingress:
+      enabled: false
+    rbac:
+      serviceAccount:
+        enabled: false
+        name: ghc-nsp-7baab590-main-de-plaat-test-workload
+    service:
+      ports:
+        - name: http
+          port: 8080
+          targetPort: 8080
+      type: ClusterIP
