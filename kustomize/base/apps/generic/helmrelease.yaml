@@ -1,0 +1,26 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: my-application
+  namespace: generic
+spec:
+  chart:
+    spec:
+      chart: application
+      sourceRef:
+        kind: HelmRepository
+        name: my-application
+        namespace: generic
+      version: 6.16.1
+  install:
+    remediation:
+      retries: 3
+  interval: 10m
+  releaseName: my-application
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    applicationName: my-application
+    service:
+      type: ClusterIP

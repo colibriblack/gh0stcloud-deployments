@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: ghc-nsp-7baab590-main-de-plaat
+patches:
+  - path: helm-values.yaml
+    target:
+      group: helm.toolkit.fluxcd.io
+      kind: HelmRelease
+      name: my-application
+      version: v2
+  - path: helmrelease-name.yaml
+    target:
+      group: helm.toolkit.fluxcd.io
+      kind: HelmRelease
+      name: my-application
+      version: v2
+  - path: helmrepository-namespace.yaml
+    target:
+      group: source.toolkit.fluxcd.io
+      kind: HelmRepository
+      name: my-application
+      version: v1
+  - path: ingress-host.yaml
+    target:
+      group: networking.k8s.io
+      kind: Ingress
+      name: my-application
+      version: v1
+resources:
+  - ../../../../base/apps/generic/helmrepository.yaml
+  - ../../../../base/apps/generic/helmrelease.yaml
+  - ../../../../base/apps/generic/ingress.yaml
