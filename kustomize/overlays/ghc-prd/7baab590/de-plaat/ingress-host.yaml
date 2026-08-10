@@ -6,7 +6,7 @@
   value: ghc-nsp-7baab590-main-de-plaat
 - op: add
   path: /metadata/annotations/cert-manager.io~1cluster-issuer
-  value: cluster-issuer
+  value: byod-cluster-issuer
 - op: replace
   path: /spec/rules/0/host
   value: deplaat.de
