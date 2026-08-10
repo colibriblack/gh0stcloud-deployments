@@ -9,16 +9,32 @@
   value: cluster-issuer
 - op: replace
   path: /spec/rules/0/host
-  value: de-plaat.7baab590.prd.gh0stcloud.de
+  value: deplaat.de
 - op: replace
   path: /spec/rules/0/http/paths/0/backend/service/name
   value: de-plaat
 - op: replace
   path: /spec/rules/0/http/paths/0/backend/service/port/number
   value: 8080
+- op: add
+  path: /spec/rules/1
+  value:
+    host: www.deplaat.de
+    http:
+      paths:
+        - backend:
+            service:
+              name: de-plaat
+              port:
+                number: 8080
+          path: /
+          pathType: Prefix
 - op: replace
   path: /spec/tls/0/hosts/0
-  value: de-plaat.7baab590.prd.gh0stcloud.de
+  value: deplaat.de
+- op: add
+  path: /spec/tls/0/hosts/1
+  value: www.deplaat.de
 - op: add
   path: /spec/tls/0/secretName
   value: de-plaat-tls
