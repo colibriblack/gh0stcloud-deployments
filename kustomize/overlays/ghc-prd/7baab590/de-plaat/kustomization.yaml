@@ -27,6 +27,4 @@ patches:
       name: my-application
       version: v1
 resources:
-  - ../../../../base/apps/generic/helmrepository.yaml
-  - ../../../../base/apps/generic/helmrelease.yaml
-  - ../../../../base/apps/generic/ingress.yaml
+  - ../../../../base/apps/generic
