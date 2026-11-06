@@ -32,7 +32,7 @@ spec:
           type: RuntimeDefault
       image:
         repository: ghcr.io/colibriblack/de-plaat
-        tag: sha-06ab749258aea451da6f795ac2cea0cd60cacc7d@sha256:1e0c22893a6811a64ef119d5a1b278c966c17e6e9e3468f9065b3f5e45dcf5f7
+        tag: sha-78aa6195bd65a953cb975d0500674b0b6a72c37e@sha256:11b05d5e42a2464a6c73ccb390e97f275e7ec4b0c6358fd04fcdadc317a004a1
       ports:
         - containerPort: 8080
           name: http
